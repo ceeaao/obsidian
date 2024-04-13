@@ -1,0 +1,2 @@
+# obsidian
+default obsidian settings
