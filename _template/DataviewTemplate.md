@@ -10,7 +10,15 @@ const currentFolderPath = this.app.workspace.getActiveFile().parent.path;
 
 // 현재 폴더와 하위 폴더 내의 .webp 파일만 필터링합니다.
 const jpgFiles = app.vault.getFiles().filter(file => {
-    return file.extension === 'jpg' && file.path.startsWith(currentFolderPath);
+    return (file.extension === 'jpg'
+		    || file.extension === 'jpeg'
+		    || file.extension === 'png'
+		    || file.extension === 'gif'
+		    || file.extension === 'mov'
+		    || file.extension === 'mp4'
+		    || file.extension === 'webp'
+		    || file.extension === 'webm')
+		    && file.path.startsWith(currentFolderPath);
 });
 
 const mycount = 7;
@@ -29,7 +37,11 @@ for (let i = 0; i < jpgFiles.length; i += mycount) {
     for (let j = 0; j < mycount; j++) {
         if (i + j < jpgFiles.length) {
             //row.push(jpgFiles[i + j].name);
-            if (jpgFiles[i + j].extension === 'jpg') {
+            if (jpgFiles[i + j].extension === 'jpg'
+	            || jpgFiles[i + j].extension === 'jpeg'
+	            || jpgFiles[i + j].extension === 'png'
+	            || jpgFiles[i + j].extension === 'gif'
+	            || jpgFiles[i + j].extension === 'webp') {
 	            row.push(dv.paragraph(`![[${jpgFiles[i + j].path}|vid-100px]][🍎](${jpgFiles[i + j].path})`));
 	        } else if (jpgFiles[i + j].extension === 'webm') {
 	            row.push(dv.paragraph(`![[${jpgFiles[i + j].path}|100]]`));
